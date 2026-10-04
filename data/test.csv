@@ -1,0 +1,354 @@
+bug_id,product_name,short_description,long_description,component_name,severity,case_type,expected_original_id,expected_outcome
+GMF-TOOLING-144903,GMF-TOOLING,.log file indicates that help documentation could not be indexed completely because ...,"!ENTRY org.eclipse.help.base 4 4 2006-05-22 16:14:25.437
+!MESSAGE Help documentation could not be indexed completely.
+!SUBENTRY 1 org.eclipse.help.base 4 4 2006-05-22 16:14:25.437
+!MESSAGE Help document /org.eclipse.gmf.doc/reference/extension-points/org_eclipse_emf_validation_constraintParsers.html cannot be opened.
+!SUBENTRY 1 org.eclipse.help.base 4 4 2006-05-22 16:14:25.468
+!MESSAGE Help document /org.eclipse.gmf.doc/reference/extension-points/org_eclipse_emf_validation_validationListeners.html cannot be opened.
+!SUBENTRY 1 org.eclipse.help.base 4 4 2006-05-22 16:14:25.468
+!MESSAGE Help document /org.eclipse.gmf.doc/reference/extension-points/org_eclipse_emf_validation_constraintProviders.html cannot be opened.
+!SUBENTRY 1 org.eclipse.help.base 4 4 2006-05-22 16:14:25.468
+!MESSAGE Help document /org.eclipse.gmf.doc/reference/extension-points/org_eclipse_gmf_runtime_common_ui_services_elementSelection.html cannot be opened.
+!SUBENTRY 1 org.eclipse.help.base 4 4 2006-05-22 16:14:25.468
+!MESSAGE Help document /org.eclipse.gmf.doc/reference/extension-points/org_eclipse_emf_validation_constraintBindings.html cannot be opened.
+!SUBENTRY 1 org.eclipse.help.base 4 4 2006-05-22 16:14:25.468
+!MESSAGE Help document /org.eclipse.gmf.doc/reference/extension-points/org_eclipse_emf_validation_traversal.html cannot be opened.
+!SUBENTRY 1 org.eclipse.help.base 4 4 2006-05-22 16:14:25.468
+!MESSAGE Help document /org.eclipse.gmf.doc/reference/extension-points/org_eclipse_gmf_runtime_diagram_core_semanticProviders.html cannot be opened.",Core,high,sampled,,auto_triaged
+MYLYN-277040,MYLYN,errors in log after opening discovery wizard,"I get hundreds of exceptions after opening the discovery wizard. It looks like it is disposing a shared color.
+
+java.lang.IllegalArgumentException: Argument not valid
+	at org.eclipse.swt.SWT.error(SWT.java:3865)
+	at org.eclipse.swt.SWT.error(SWT.java:3799)
+	at org.eclipse.swt.SWT.error(SWT.java:3770)
+	at org.eclipse.swt.widgets.TreeItem.setBackground(TreeItem.java:1227)
+	at org.eclipse.jface.viewers.TreeViewerRow.setBackground(TreeViewerRow.java:134)
+	at org.eclipse.jface.viewers.ViewerCell.setBackground(ViewerCell.java:129)
+	at org.eclipse.jface.viewers.TableColumnViewerLabelProvider.update(TableColumnViewerLabelProvider.java:81)
+	at org.eclipse.jface.viewers.ViewerColumn.refresh(ViewerColumn.java:145)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.doUpdateItem(AbstractTreeViewer.java:932)
+	at org.eclipse.jface.viewers.AbstractTreeViewer$UpdateItemSafeRunnable.run(AbstractTreeViewer.java:102)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.runtime.Platform.run(Platform.java:888)
+	at org.eclipse.ui.internal.JFaceUtil$1.run(JFaceUtil.java:48)
+	at org.eclipse.jface.util.SafeRunnable.run(SafeRunnable.java:175)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.doUpdateItem(AbstractTreeViewer.java:1012)
+	at org.eclipse.jface.viewers.StructuredViewer$UpdateItemSafeRunnable.run(StructuredViewer.java:481)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.runtime.Platform.run(Platform.java:888)
+	at org.eclipse.ui.internal.JFaceUtil$1.run(JFaceUtil.java:48)
+	at org.eclipse.jface.util.SafeRunnable.run(SafeRunnable.java:175)
+	at org.eclipse.jface.viewers.StructuredViewer.updateItem(StructuredViewer.java:2111)
+	at org.eclipse.jface.viewers.StructuredViewer.internalUpdate(StructuredViewer.java:2094)
+	at org.eclipse.jface.viewers.StructuredViewer.update(StructuredViewer.java:2033)
+	at org.eclipse.jface.viewers.ColumnViewer.update(ColumnViewer.java:554)
+	at org.eclipse.jface.viewers.StructuredViewer.update(StructuredViewer.java:1977)
+	at org.eclipse.jface.viewers.StructuredViewer.handleLabelProviderChanged(StructuredViewer.java:1140)
+	at org.eclipse.jface.viewers.ContentViewer$1.labelProviderChanged(ContentViewer.java:97)
+	at org.eclipse.ui.internal.decorators.DecoratorManager$1.run(DecoratorManager.java:430)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.ui.internal.decorators.DecoratorManager.fireListener(DecoratorManager.java:428)
+	at org.eclipse.ui.internal.decorators.DecorationScheduler$3.runInUIThread(DecorationScheduler.java:530)
+	at org.eclipse.ui.progress.UIJob$1.run(UIJob.java:95)
+	at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:35)
+	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:134)
+	at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:3460)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3107)
+	at org.eclipse.ui.internal.Workbench.runEventLoop(Workbench.java:2405)
+	at org.eclipse.ui.internal.Workbench.runUI(Workbench.java:2369)
+	at org.eclipse.ui.internal.Workbench.access$4(Workbench.java:2221)
+	at org.eclipse.ui.internal.Workbench$5.run(Workbench.java:500)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:332)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:493)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:149)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:113)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:194)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:110)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:79)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:368)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:179)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:559)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:514)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1311)
+	at org.eclipse.equinox.launcher.Main.main(Main.java:1287)",UI,high,sampled,,auto_triaged
+PLATFORM-34879,PLATFORM,Calling ScrollBar.setVisible() when a text widget has focus causes a focus lost event on the text widget,"This happens even if the scrollbar visibility doesn't change.
+
+Here's a simple test case:
+
+import org.eclipse.swt.SWT
+import org.eclipse.swt.events.*
+import org.eclipse.swt.layout.FillLayout
+import org.eclipse.swt.widgets.*
+
+public class FocusTest {
+
+public static void main(String[] args) {
+	Display display = Display.getDefault()
+	Shell shell = new Shell(display)
+	shell.setLayout(new FillLayout())
+	
+	final Canvas canvas = new Canvas(shell SWT.H_SCROLL | SWT.V_SCROLL)
+	canvas.getVerticalBar().setVisible(false)
+	canvas.getHorizontalBar().setVisible(false)
+	Text text = new Text(canvas SWT.SINGLE)
+	text.setSize(100 20)
+	text.addVerifyListener(new VerifyListener() {
+		public void verifyText(VerifyEvent e) {
+			canvas.getVerticalBar().setVisible(false)
+		}
+	})
+	text.addFocusListener(new FocusAdapter() {
+		public void focusLost(FocusEvent e) {
+			System.out.println(Focus Lost)
+		}
+	})
+	
+	shell.setSize(600 500)
+	shell.open()
+	while (!shell.isDisposed())
+		if (!display.readAndDispatch())
+			display.sleep()
+}
+
+}",SWT,high,sampled,,auto_triaged
+JDT-424138,JDT,[1.8][dom ast] Bad source ranges for qualified TYPE_USE annotation in extends clause,"BETA_JAVA8
+
+Bad source ranges for qualified TYPE_USE annotation in extends clause. 
+
+BTW: For this specific example javac 1.8.0-ea-b115 has even worse bugs...
+
+!ENTRY org.eclipse.jdt.core 4 4 2013-12-16 16:31:25.041
+!MESSAGE Bad AST node structure:
+- parent [156 168] org.eclipse.jdt.core.dom.SimpleType
+   annotations [156 194] org.eclipse.jdt.core.dom.MarkerAnnotation
+- parent [156 168] org.eclipse.jdt.core.dom.SimpleType
+   previous [156 194] org.eclipse.jdt.core.dom.MarkerAnnotation
+   name [164 168] org.eclipse.jdt.core.dom.SimpleName
+
+----------------------------------- SOURCE BEGIN -------------------------------------
+package jsr308.myex
+
+import java.lang.annotation.ElementType
+import java.lang.annotation.Target
+
+public class NestedAnnotationTest extends
+        @jsr308.myex.NestedAnnotationTest.Anno Object { // bad AST
+//        @Anno Object { // OK
+
+    @Target(ElementType.TYPE_USE)
+    public @interface Anno {
+    }
+}
+
+----------------------------------- SOURCE END -------------------------------------
+!STACK 0
+java.lang.IllegalStateException: Bad AST node structure
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1419)
+	at org.eclipse.jdt.core.dom.AST.convertCompilationUnit(AST.java:273)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.makeConsistent(ReconcileWorkingCopyOperation.java:206)
+...",Core,high,sampled,,auto_triaged
+Z_ARCHIVED-199762,Z_ARCHIVED,[UX][PII] Coverage Statistics view shows incorrect default page message.,"When open Coverage Statistics view with profiling data that does not contain coverage statistics data. Default page is shown in Coverage Statistics view but incorrect message is shown.
+
+No execution statistics is available for display.
+Either you have no trace selected in the Profiling Monitor view or the current
+selection does not contain execution statistic information.
+
+Note:
+This view is available only if the trace contains execution statistics. To
+collect this type of information on the Profile tab in the Launch
+configuration choose the Execution Time Analysis option.",TPTP,high,sampled,,auto_triaged
+PLATFORM-180988,PLATFORM,SourceFile class from org.eclipse.releng.tools has no copyright header,Summary says it all. This is a little ironic when you consider the fact that the releng tools provides tools for fixing/managing copyright headers. ),Releng,low,sampled,,auto_triaged
+JDT-83729,JDT,Enum constructor: should have private method icon,"Enum constructors are always private (see also bug 83648).
+Therefore they should be rendered as private in the Outline too.
+
+	enum En {
+		
+		En() {} //private!
+	}",UI,low,sampled,,auto_triaged
+Z_ARCHIVED-285730,Z_ARCHIVED,TVT35:TCT412: JPN: missing mnemonic key (Start Monitoring/Pause Monitoring)," Keiko Terada at 2009.08.05.03.26.50 
+NLS Build Label:20090804-1200
+Language: Japanese
+Must-Fix: No
+
+Steps To Recreate Problem (example) :
+1)  Select Window->Open Perspective->Other... from the main menu.  Then select Java and click OK.
+2)  Click the arrow next to the  button to bring up the drop down menu.
+3)  Click on Profile Configurations...
+4)  Right click on External Java Application and select New.
+5)  Click on the Main tab.
+6)  Click the Browse... button navigate to the folder where you saved the PerformanceExample files and select PerformanceExample.class.
+7)  Click on the Monitor tab.
+8)  Highlight Memory Analysis by clicking on it then click the Edit Options button.
+9)  Click Finish.
+10)  Click on the Profile button at the bottom of the panel.
+11)  Wait for the profile process task to appear in the bottom right corner and for the Confirm Perspective Switch dialog to appear.
+12)  Click Yes.
+13)  If a panel labeled Performance Example appears minimize it.
+14)  Click on the Link with Viewer  button to enable it.
+15)  In the Profiling Monitor right click on  Profiling... and select Open With.
+16)  Verify the red circled areas on the panel below are correctly displayed and translated.
+
+Problem Description:
+
+In the context menu following menu(s) do not have mnemonic key(s):
+
+Start Monitoring
+Pause Monitoring
+
+The other menus without mnemonics are reported in a separate TCT article.
+
+ Matthew McClintock at 2009.08.05.11.34.01 
+This article was reassigned from Category:''TVT/TestingInbox''.",TPTP,low,sampled,,auto_triaged
+PDE-267927,PDE,[cheatsheet] Inconsistent wording in RCP cheat sheet,In the Customize the Launcher section of the Customize a Product cheat sheet the tasks talk about the 'Launcher' tab but the tab is named 'Launching',UI,low,sampled,,auto_triaged
+PLATFORM-476703,PLATFORM,Remove Y-Builds from downloads and updates,"These Y-builds were work that was done while developing the Java 8 Patch. 
+
+They are basically a complete build except with Java 8 stream instead of the normal stream. 
+
+Primary use was to be able to run unit tests. 
+
+These were never advertised or published to the public so can remove them without notice. But thought best to leave this record of it).",Releng,low,sampled,,auto_triaged
+JDT-11727,JDT,infinite loop during attempted code assist,"314
+
+This is not reproducable.  I was trying to do a code assist and Eclipse locked 
+up.  I pressed control-BREAK after a few minutes and the main thread was in the 
+following code (I don't have the other thread's available)
+
+main prio=5 tid=0x00234B28 nid=0x734 runnable [6f000..6fc3c]
+        at java.lang.String.equals(String.java:631)
+        at org.eclipse.core.runtime.Path.equals(Path.java:426)
+        at org.eclipse.core.internal.resources.Resource.equals(Resource.java:494
+)
+        at org.eclipse.ui.part.FileEditorInput.equals(FileEditorInput.java:40)
+        at java.util.HashMap.eq(HashMap.java:258)
+        at java.util.HashMap.get(HashMap.java:307)
+        at org.eclipse.ui.texteditor.AbstractDocumentProvider.canSaveDocument(Ab
+stractDocumentProvider.java:326)
+        at org.eclipse.jdt.internal.ui.javaeditor.DocumentAdapter.hasUnsavedChan
+ges(DocumentAdapter.java:263)
+        at org.eclipse.jdt.internal.core.BufferCache.close(BufferCache.java:37)
+        - locked  (a org.eclipse.jdt.internal.ui.javaeditor.DocumentAd
+apter)
+        at org.eclipse.jdt.internal.core.OverflowingLRUCache.privateRemoveEntry(
+OverflowingLRUCache.java:284)
+        at org.eclipse.jdt.internal.core.OverflowingLRUCache.makeSpace(Overflowi
+ngLRUCache.java:171)
+        at org.eclipse.jdt.internal.core.OverflowingLRUCache.shrink(OverflowingL
+RUCache.java:392)
+        at org.eclipse.jdt.internal.core.OverflowingLRUCache.put(OverflowingLRUC
+ache.java:317)
+        at org.eclipse.jdt.internal.core.BufferManager.addBuffer(BufferManager.j
+ava:38)
+        at org.eclipse.jdt.internal.core.BufferManager.openBuffer(BufferManager.
+java:97)
+        at org.eclipse.jdt.internal.core.CompilationUnit.openBuffer(CompilationU
+nit.java:599)
+        at org.eclipse.jdt.internal.core.Openable.getBuffer(Openable.java:180)
+        at org.eclipse.jdt.internal.corext.javadoc.JavaDocAccess.getJavaDoc(Java
+DocAccess.java:36)
+        at org.eclipse.jdt.internal.ui.text.java.hover.JavaTypeHover.getHoverInf
+o(JavaTypeHover.java:120)
+        at org.eclipse.jdt.internal.ui.text.java.hover.JavaTextHover.getHoverInf
+o(JavaTextHover.java:300)
+        at org.eclipse.jface.text.TextViewerHoverManager.computeInformation(Text
+ViewerHoverManager.java:56)
+        at org.eclipse.jface.text.AbstractInformationControlManager.showInformat
+ion(AbstractInformationControlManager.java:536)
+        at org.eclipse.jface.text.AbstractHoverInformationControlManager$MouseTr
+acker.mouseHover(AbstractHoverInformationControlManager.java:233)
+        at org.eclipse.swt.widgets.TypedListener.handleEvent(TypedListener.java:
+207)
+        at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:74)
+        at org.eclipse.swt.widgets.Widget.notifyListeners(Widget.java:637)
+        at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:1420)
+        at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:1208)
+        at org.eclipse.ui.internal.Workbench.runEventLoop(Workbench.java:692)
+        at org.eclipse.ui.internal.Workbench.run(Workbench.java:675)
+        at org.eclipse.core.internal.boot.InternalBootLoader.run(InternalBootLoa
+der.java:777)
+        at org.eclipse.core.boot.BootLoader.run(BootLoader.java:319)
+        at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+        at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.
+java:39)
+        at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAcces
+sorImpl.java:25)
+        at java.lang.reflect.Method.invoke(Method.java:324)
+        at org.eclipse.core.launcher.Main.basicRun(Main.java:151)
+        at org.eclipse.core.launcher.Main.run(Main.java:502)
+        at org.eclipse.core.launcher.Main.main(Main.java:362)",UI,normal,sampled,,auto_triaged
+Z_ARCHIVED-102106,Z_ARCHIVED,Installation guide refers to the wrong file name,"Step 7 of the 4.0 installation guide refers to the wrong file name:
+
+http://eclipse.org/tptp/home/downloads/installguide/InstallGuide40.html
+
+We probably need to also emphasize step 4.  Maybe the installation guide needs
+to be re-written to be clearer.
+
+Some steps seem a little vague: e.g.  Download the all the features listed
+(with zip files whose names will be in the format
+org.eclipse.tptp.monitor-TPTP-4.0-2005MMDDHHHH.zip...
+
+I didn't see files named org.eclipse.tptp.monitor-TPTP-4.0-2005MMDDHHHH.zip.
+I think we never updated the guide when we changed the format of the download page.",TPTP,normal,sampled,,auto_triaged
+PLATFORM-205866,PLATFORM,SWT.Settings - no notification on Vista,"1. Hook a listener to SWT.Settings 
+2. Vista backdrop->right menu->Personalize->Window Color and Appearance
+3. Change color scheme
+
+My assumption is that the listener should be notified. In the code below message should be written to system out but never is. Following similar steps on XP it is.
+
+import org.eclipse.swt.SWT
+import org.eclipse.swt.widgets.Display
+import org.eclipse.swt.widgets.Event
+import org.eclipse.swt.widgets.Listener
+import org.eclipse.swt.widgets.Shell
+
+
+public class RunTest {
+
+        public static void main(String[] args) {
+                Display display = new Display ()
+                Shell shell = new Shell(display)
+                shell.open ()
+
+                System.out.println(Adding SWT.Settings listener)
+                Display.getCurrent().addListener(SWT.Settings new Listener() {
+                        public void handleEvent(Event event) {
+                                System.out.println(SWT.Settings changed)                           
+                        }
+                })
+                while (!shell.isDisposed ()) {
+                        if (!display.readAndDispatch ()) display.sleep ()
+                }
+                display.dispose ()
+        }
+}",SWT,normal,sampled,,auto_triaged
+Z_ARCHIVED-199331,Z_ARCHIVED,provide Keyboard Shortcuts for the analysis actions,Analysis actions had no shortcuts associated with them,TPTP,normal,sampled,,auto_triaged
+Z_ARCHIVED-101723,Z_ARCHIVED,Deprecate unused IBM-specific constants in org.eclipse.hyades.loaders.hierarchyConstants.,"Deprecate unused IBM-specific constants in 
+org.eclipse.hyades.loaders.hierarchyConstants..
+
+For example:
+
+    public static final String LOGGING_UTIL_NODE_CLASS = NODE
+    public static final String LOGGING_UTIL_PROCESS_CREATE_CLASS 
+= PROCESS_CREATE
+    public static final String LOGGING_UTIL_AGENT_CREATE_CLASS = AGENT_CREATE
+    public static final String LOGGING_UTIL_ID = logging.util.id
+    public static final String LOGGING_UTIL_IDREF = logging.util.idref
+    public static final String LOGGING_UTIL_COMMENT = <!-- 
+com.ibm.etools.logging.util log file -->
+    public static final String LOGGING_AGENT_TYPE = Logging
+    public static final String LOGGING_AGENT_VERSION = 1.000
+    public static final String LOGGING_AGENT_ENVIRONMENT = unknown
+    public static final String LOGGING_UTIL_NODE_ID = logging.util.node_id
+    public static final String LOGGING_UTIL_PROCESS_ENVIRONMENT 
+= logging.util.process_environment
+    public static final String LOGGING_UTIL_LOGGER_LEVEL 
+= logging.util.MsgLoggerLevel",TPTP,normal,sampled,,auto_triaged
+SYNTH-DUP-1,PLATFORM,Text selection drawn incorrectly when selecting backwards,"On Eclipse 2.1 (I200302061700) using Linux-GTK with J2SDK 1.4.1_01 on a dual-processor Pentium 2GHz machine, multiple redraw issues occur. The most consistent problem appears when making an extended text selection in reverse (backwards), where the selection rendering becomes incorrect.",SWT,normal,duplicate,PLATFORM-31385,duplicate
+SYNTH-DUP-2,JDT,JavaDoc code completion missing for methods in the same class,"In Build 20020602, JavaDoc code completion does not propose methods from the same type. For example, in a class containing methods a() and b(), placing the cursor inside the JavaDoc @see A# tag does not offer completion for method names defined in the same class.",UI,low,duplicate,JDT-18719,duplicate
+SYNTH-DUP-3,XTEND,Error: Primitive types cannot be used with assertJ in Eclipse,"In a simple project using assertJ, calling assertThat(anyPrimitiveType) causes an exception when saving the file. Eclipse reports an error stating that constraints may not be primitives, preventing normal editing.",Core,normal,duplicate,XTEND-485032,duplicate
+SYNTH-VAGUE-1,,Eclipse does not work,It stopped working after the last update. Please fix it as soon as possible.,,,vague,,needs_human_review
+SYNTH-QUESTION-1,,How do I change the font size in the editor?,I want the text in the Java editor to be bigger. Where can I change this setting?,,,question,,rejected
+SYNTH-OOS-1,,Mobile banking app crashes when I log in,The app closes by itself every time I enter my password on my phone. I am using the latest version.,,,out_of_scope,,rejected
