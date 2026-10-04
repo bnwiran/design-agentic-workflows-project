@@ -1,0 +1,34 @@
+flowchart TD
+    NEW(["New bug report"]) --> PR["process_report: checks session memory"]
+    SM[("Session memory: processed reports")] <--> PR
+    PR -->|"already processed"| STORED(["Stored result, no LLM call"])
+    PR -->|"new report"| ROUTER
+
+    subgraph GRAPH["LangGraph: TriageState moves through the nodes"]
+        ROUTER["router agent: bug, question or out_of_scope"]
+        DUP["duplicate agent: LLM judges top 3 candidates"]
+        TRI["triage agent: severity, component, confidence"]
+        DEC["decide: confidence against threshold 0.5"]
+        HR["human_review node"]
+        ROUTER -->|"bug"| DUP
+        DUP -->|"not a duplicate"| TRI
+        TRI --> DEC
+    end
+
+    TOOL[["TF-IDF search tool: top 3 similar bugs from the 500-bug index"]] -->|"direct call"| DUP
+
+    ROUTER -->|"question or out_of_scope"| REJ(["rejected"])
+    DUP -->|"real duplicate"| DUPOUT(["duplicate"])
+    DEC -->|"confidence 0.5 or higher"| AUTO(["auto_triaged, suggest-only"])
+    DEC -->|"confidence below 0.5"| HR
+    ROUTER -.->|"API error or step limit"| HR
+    DUP -.->|"API error or step limit"| HR
+    TRI -.->|"API error or step limit"| HR
+    HR --> HROUT(["needs_human_review"])
+
+    LOG[("logs/triage.log: one line per node call")]
+    ROUTER -.-> LOG
+    DUP -.-> LOG
+    TRI -.-> LOG
+    DEC -.-> LOG
+    HR -.-> LOG
